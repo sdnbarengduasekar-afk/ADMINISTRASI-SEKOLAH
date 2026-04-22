@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SIAPD V1.0 - MTs Plus Skill Nurul Hayat Jember</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
+        :root {
+            --primary: #1a237e;
+            --primary-light: #303f9f;
+            --secondary: #5c6bc0;
+            --success: #4caf50;
+            --danger: #f44336;
+            --warning: #ff9800;
+            --info: #2196f3;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --border: #e0e0e0;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --header-height: 60px;
+            --footer-height: 50px;
+        }
+        
+        body {
+            background: #f8f9fa;
+            color: var(--dark);
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* LOGIN PAGE */
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .login-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .school-logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .logo-image-placeholder {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        
+        .school-name {
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .app-title {
+            color: var(--dark);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .app-subtitle {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        /* FORM STYLES */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 14px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+        }
+        
+        select.form-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+    background-color: white; /* Tambahkan ini */
+}
+        
+        /* BUTTON STYLES */
+        .mobile-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            gap: 8px;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:active {
+            background: var(--primary-light);
+            transform: scale(0.98);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-warning {
+            background: var(--warning);
+            color: white;
+        }
+        
+        .btn-info {
+            background: var(--info);
+            color: white;
+        }
+        
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 13px;
+            width: auto;
+        }
+        
+        /* MAIN APP */
+        #appPage {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* HEADER */
+        .mobile-header {
+            height: var(--header-height);
+            background: white;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .mobile-logo {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mobile-logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .mobile-logo-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        .user-menu {
+            position: relative;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .user-dropdown {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            display: none;
+            z-index: 1001;
+        }
+        
+        .user-dropdown.active {
+            display: block;
+        }
+        
+        /* CONTENT */
+        .mobile-content {
+            flex: 1;
+            padding: 20px 15px;
+            overflow-y: auto;
+        }
+        
+        /* DASHBOARD */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 480px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 140px;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+        
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .card-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.3;
+        }
+        
+        /* TABS */
+        .mobile-tabs {
+            display: flex;
+            overflow-x: auto;
+            background: white;
+            border-radius: var(--radius);
+            padding: 8px;
+            margin-bottom: 15px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .mobile-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .mobile-tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 15px;
+            border: none;
+            background: none;
+            border-radius: calc(var(--radius) - 4px);
+            color: #666;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        .mobile-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* TABLE */
+        .mobile-table-container {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-top: 15px;
+            overflow-x: auto;
+        }
+        
+        .mobile-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+        }
+        
+        .mobile-table thead {
+            background: var(--primary);
+        }
+        
+        .mobile-table th {
+            padding: 12px 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            text-align: left;
+        }
+        
+        .mobile-table td {
+            padding: 12px 10px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        /* ACTION BUTTONS */
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        /* BADGES */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .badge-hadir { background: #d4edda; color: #155724; }
+        .badge-izin { background: #fff3cd; color: #856404; }
+        .badge-sakit { background: #d1ecf1; color: #0c5460; }
+        .badge-alpha { background: #f8d7da; color: #721c24; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-warning { background: #fff3cd; color: #856404; }
+        
+        /* MODAL */
+        .mobile-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .mobile-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1;
+        }
+        
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .close-modal {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            color: #666;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        /* FORM GRID */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        /* UTILITIES */
+        .hidden {
+            display: none !important;
+        }
+        
+        .mt-1 { margin-top: 5px; }
+        .mt-2 { margin-top: 10px; }
+        .mt-3 { margin-top: 15px; }
+        .mb-1 { margin-bottom: 5px; }
+        .mb-2 { margin-bottom: 10px; }
+        .mb-3 { margin-bottom: 15px; }
+        
+        .text-center { text-align: center; }
+        .text-danger { color: var(--danger); }
+        
+        /* LOADING */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+        
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+        
+        /* STUDENT LIST */
+        .student-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .student-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .student-info {
+            flex: 1;
+        }
+        
+        .student-name {
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 14px;
+        }
+        
+        .student-nis {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* FOOTER */
+        .mobile-footer {
+            height: var(--footer-height);
+            background: white;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 15px;
+        }
+        
+        .footer-text {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        
+        .footer-text a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage">
+        <div class="login-page">
+            <div class="login-card">
+                <div class="school-logo">
+                    <div class="logo-image-placeholder"><img 
+            src="https://drive.google.com/thumbnail?id=1eeSWZnq2CK4jd-aigwqyHto5EMO2ZA3Q&sz=w300"
+            alt="Logo MTs Plus Skill Nurul Hayat Jember"
+            style="
+                width: 85%;
+                height: 85%;
+                object-fit: contain;
+            "></div>
+                    <div class="school-name">MTs Plus</div>
+                    <div class="school-name" style="font-size: 16px;">Skill Nurul Hayat Jember</div>
+                    <div class="app-title">SIAPD V1.0</div>
+                    <div class="app-subtitle">
+                        Sistem Administrasi Pembelajaran Digital<br>
+                        <small>Dikembangkan oleh PT. LangsungKlik Digital Media</small>
+                    </div>
+                </div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">ID Guru</label>
+                        <input type="text" id="idGuru" class="form-input" placeholder="Masukkan ID guru" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" id="password" class="form-input" placeholder="Masukkan password" required>
+                    </div>
+                    <div id="loginMessage" class="hidden" style="padding: 10px; background: #f8d7da; color: #721c24; border-radius: 8px; margin-bottom: 15px; font-size: 14px;"></div>
+                    <button type="submit" class="mobile-btn btn-primary" id="loginBtn">
+                        <span id="loginText">Masuk ke Aplikasi</span>
+                        <span id="loginLoading" class="loading hidden"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main App (Mobile) -->
+    <div id="appPage" class="hidden">
+        <!-- Mobile Header -->
+        <div class="mobile-header">
+            <div class="mobile-logo">
+                <div class="mobile-logo-img"><img 
+            src="https://drive.google.com/thumbnail?id=1eeSWZnq2CK4jd-aigwqyHto5EMO2ZA3Q&sz=w300"
+            alt="Logo MTs Plus Skill Nurul Hayat Jember"
+            style="
+                width: 85%;
+                height: 85%;
+                object-fit: contain;
+            "></div>
+                <div class="mobile-logo-text">
+                    SIAPD V1.0<br>
+                    <small style="font-size: 12px;">MTs Plus Skill NH Jember</small>
+                </div>
+            </div>
+            
+            <div class="user-menu">
+                <div class="user-avatar" onclick="toggleUserMenu()" id="userAvatar">
+                    G
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="user-info" style="padding: 15px; border-bottom: 1px solid var(--border);">
+                        <div class="user-name" id="mobileUserName">Nama Guru</div>
+                        <div class="user-id" id="mobileUserId">ID: -</div>
+                    </div>
+                    <div style="padding: 12px 15px; color: var(--danger); cursor: pointer; display: flex; align-items: center; gap: 10px;" onclick="logout()">
+                        <span>🚪</span>
+                        <span>Keluar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Content Area -->
+        <div class="mobile-content">
+            <!-- Dashboard -->
+            <div id="dashboardPage">
+                <h2 style="margin-bottom: 10px; color: var(--dark);">Selamat Datang</h2>
+                <p style="color: #666; margin-bottom: 20px;" id="welcomeMessage">Kelola administrasi pembelajaran dengan mudah</p>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card" onclick="showPage('perencanaan')">
+                        <div class="card-icon">📚</div>
+                        <div class="card-title">Perencanaan</div>
+                        <div class="card-desc">Silabus & RPP</div>
+                    </div>
+                    
+                    <div class="dashboard-card" onclick="showPage('absensi')">
+                        <div class="card-icon">📅</div>
+                        <div class="card-title">Absensi</div>
+                        <div class="card-desc">Input kehadiran siswa</div>
+                    </div>
+                    
+                    <div class="dashboard-card" onclick="showPage('jurnal')">
+                        <div class="card-icon">📒</div>
+                        <div class="card-title">Jurnal</div>
+                        <div class="card-desc">Catatan mengajar harian</div>
+                    </div>
+                    
+                    <div class="dashboard-card" onclick="showPage('penilaian')">
+                        <div class="card-icon">📊</div>
+                        <div class="card-title">Penilaian</div>
+                        <div class="card-desc">Input nilai siswa</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Perencanaan Page -->
+            <div id="perencanaanPage" class="hidden">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                    <h2 style="color: var(--dark);">Perencanaan</h2>
+                    <button class="mobile-btn btn-secondary btn-sm" onclick="showPage('dashboard')">
+                        ← Kembali
+                    </button>
+                </div>
+                
+                <div class="mobile-tabs">
+                    <button class="mobile-tab active" onclick="showTab('silabus')">Silabus</button>
+                    <button class="mobile-tab" onclick="showTab('rpp')">RPP</button>
+                </div>
+                
+                <!-- Silabus Tab -->
+                <div id="silabusTab">
+                    <div style="background: white; border-radius: var(--radius); padding: 20px; margin-bottom: 15px;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Mata Pelajaran</label>
+                                <select id="filterMapel" class="form-input" onchange="loadSilabus()">
+                                    <option value="">Semua Mapel</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Kelas</label>
+                                <select id="filterKelas" class="form-input" onchange="loadSilabus()">
+                                    <option value="">Semua Kelas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="mobile-btn btn-primary mt-2" onclick="showModalSilabus()">
+                            + Tambah Silabus
+                        </button>
+                    </div>
+                    
+                    <div class="mobile-table-container">
+                        <div style="overflow-x: auto;">
+                            <table class="mobile-table" id="silabusTable">
+                                <thead>
+                                    <tr>
+                                        <th>Kode</th>
+                                        <th>Mapel</th>
+                                        <th>Kelas</th>
+                                        <th>Capaian</th>
+                                        <th>Jam</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="silabusTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- RPP Tab -->
+                <div id="rppTab" class="hidden">
+                    <div style="background: white; border-radius: var(--radius); padding: 20px; margin-bottom: 15px;">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Mata Pelajaran</label>
+                                <select id="filterRppMapel" class="form-input" onchange="loadRpp()">
+                                    <option value="">Semua Mapel</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Kelas</label>
+                                <select id="filterRppKelas" class="form-input" onchange="loadRpp()">
+                                    <option value="">Semua Kelas</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Semester</label>
+                                <select id="filterRppSemester" class="form-input" onchange="loadRpp()">
+                                    <option value="">Semua Semester</option>
+                                    <option value="Ganjil">Ganjil</option>
+                                    <option value="Genap">Genap</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="mobile-btn btn-primary mt-2" onclick="showModalRpp()">
+                            + Tambah RPP
+                        </button>
+                    </div>
+                    
+                    <div class="mobile-table-container">
+                        <div style="overflow-x: auto;">
+                            <table class="mobile-table" id="rppTable">
+                                <thead>
+                                    <tr>
+                                        <th>Kode</th>
+                                        <th>Mapel</th>
+                                        <th>Kelas</th>
+                                        <th>Semester</th>
+                                        <th>Materi</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="rppTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Absensi Page -->
+            <div id="absensiPage" class="hidden">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                    <h2 style="color: var(--dark);">Absensi</h2>
+                    <button class="mobile-btn btn-secondary btn-sm" onclick="showPage('dashboard')">
+                        ← Kembali
+                    </button>
+                </div>
+                
+                <div style="background: white; border-radius: var(--radius); padding: 20px; margin-bottom: 15px;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Tanggal</label>
+                            <input type="date" id="filterTanggal" class="form-input" value="">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kelas</label>
+                            <select id="filterAbsensiKelas" class="form-input">
+                                <option value="">Pilih Kelas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="mobile-btn btn-primary" onclick="showModalAbsensi()">
+                        + Input Absensi
+                    </button>
+                </div>
+                
+                <div class="empty-state">
+                    <div class="empty-state-icon">📅</div>
+                    <p style="margin-bottom: 15px;">Silahkan input absensi untuk mencatat kehadiran siswa</p>
+                    <button class="mobile-btn btn-primary" onclick="showModalAbsensi()">
+                        + Input Absensi
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Jurnal Page -->
+            <div id="jurnalPage" class="hidden">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                    <h2 style="color: var(--dark);">Jurnal Mengajar</h2>
+                    <button class="mobile-btn btn-secondary btn-sm" onclick="showPage('dashboard')">
+                        ← Kembali
+                    </button>
+                </div>
+                
+                <div style="background: white; border-radius: var(--radius); padding: 20px; margin-bottom: 15px;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Mata Pelajaran</label>
+                            <select id="filterJurnalMapel" class="form-input">
+                                <option value="">Pilih Mapel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kelas</label>
+                            <select id="filterJurnalKelas" class="form-input">
+                                <option value="">Pilih Kelas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Semester</label>
+                            <select id="filterJurnalSemester" class="form-input">
+                                <option value="">Pilih Semester</option>
+                                <option value="Ganjil">Ganjil</option>
+                                <option value="Genap">Genap</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="mobile-btn btn-primary" onclick="showModalJurnal()">
+                        + Tambah Jurnal
+                    </button>
+                </div>
+                
+                <div class="empty-state">
+                    <div class="empty-state-icon">📒</div>
+                    <p style="margin-bottom: 15px;">Catat kegiatan mengajar harian Anda</p>
+                    <button class="mobile-btn btn-primary" onclick="showModalJurnal()">
+                        + Tambah Jurnal
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Penilaian Page -->
+            <div id="penilaianPage" class="hidden">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+                    <h2 style="color: var(--dark);">Penilaian</h2>
+                    <button class="mobile-btn btn-secondary btn-sm" onclick="showPage('dashboard')">
+                        ← Kembali
+                    </button>
+                </div>
+                
+                <div style="background: white; border-radius: var(--radius); padding: 20px; margin-bottom: 15px;">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Mata Pelajaran</label>
+                            <select id="filterNilaiMapel" class="form-input" onchange="loadNilai()">
+                                <option value="">Semua Mapel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kelas</label>
+                            <select id="filterNilaiKelas" class="form-input" onchange="loadNilai()">
+                                <option value="">Semua Kelas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Semester</label>
+                            <select id="filterNilaiSemester" class="form-input" onchange="loadNilai()">
+                                <option value="">Semua Semester</option>
+                                <option value="Ganjil">Ganjil</option>
+                                <option value="Genap">Genap</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tahun Ajaran</label>
+                            <select id="filterNilaiTahun" class="form-input" onchange="loadNilai()">
+                                <option value="">Semua Tahun</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="mobile-btn btn-primary" onclick="showModalNilai()">
+                        + Input Nilai
+                    </button>
+                </div>
+                
+                <div class="mobile-table-container">
+                    <div style="overflow-x: auto;">
+                        <table class="mobile-table" id="nilaiTable">
+                            <thead>
+                                <tr>
+                                    <th>NIS</th>
+                                    <th>Nama</th>
+                                    <th>PH</th>
+                                    <th>PTS</th>
+                                    <th>PAS</th>
+                                    <th>Sikap</th>
+                                    <th>Ket.</th>
+                                    <th>Nilai</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="nilaiTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Footer -->
+        <div class="mobile-footer">
+            <div class="footer-text">
+                <div>PT. LangsungKlik Digital Media</div>
+                <div>© 2026 • <a href="https://langsungklik.id/" target="_blank">LangsungKlik.id</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <!-- Silabus Modal -->
+    <div id="modalSilabus" class="mobile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalSilabusTitle">Tambah Silabus</div>
+                <button type="button" class="close-modal" onclick="closeModal('modalSilabus')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="formSilabus" onsubmit="event.preventDefault(); saveSilabusForm();">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Kode Silabus *</label>
+                            <input type="text" id="silabusKode" class="form-input" required placeholder="SIL-TIK-VII">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mata Pelajaran *</label>
+                            <select id="silabusMapel" class="form-input" required>
+                                <option value="">Pilih Mapel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kelas *</label>
+                            <select id="silabusKelas" class="form-input" required>
+                                <option value="">Pilih Kelas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Alokasi Jam</label>
+                            <input type="text" id="silabusJam" class="form-input" placeholder="3 JP/minggu">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Capaian Pembelajaran</label>
+                        <textarea id="silabusCapaian" class="form-input" rows="3" style="resize: vertical;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tujuan Pembelajaran</label>
+                        <textarea id="silabusTujuan" class="form-input" rows="3" style="resize: vertical;"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="button" class="mobile-btn btn-secondary" onclick="closeModal('modalSilabus')" style="flex: 1;">Batal</button>
+                        <button type="submit" class="mobile-btn btn-primary" id="saveSilabusBtn" style="flex: 1;">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- RPP Modal -->
+    <div id="modalRPP" class="mobile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalRppTitle">Tambah RPP</div>
+                <button type="button" class="close-modal" onclick="closeModal('modalRPP')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="formRPP" onsubmit="event.preventDefault(); saveRppForm();">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Kode RPP *</label>
+                            <input type="text" id="rppKode" class="form-input" required placeholder="RPP-TIK-VII-01">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mata Pelajaran *</label>
+                            <select id="rppMapel" class="form-input" required>
+                                <option value="">Pilih Mapel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kelas *</label>
+                            <select id="rppKelas" class="form-input" required>
+                                <option value="">Pilih Kelas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Semester *</label>
+                            <select id="rppSemester" class="form-input" required>
+                                <option value="">Pilih Semester</option>
+                                <option value="Ganjil">Ganjil</option>
+                                <option value="Genap">Genap</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Materi Pembelajaran</label>
+                        <textarea id="rppMateri" class="form-input" rows="3" style="resize: vertical;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tujuan Pembelajaran</label>
+                        <textarea id="rppTujuan" class="form-input" rows="3" style="resize: vertical;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Langkah Pembelajaran</label>
+                        <textarea id="rppLangkah" class="form-input" rows="3" style="resize: vertical;"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="button" class="mobile-btn btn-secondary" onclick="closeModal('modalRPP')" style="flex: 1;">Batal</button>
+                        <button type="submit" class="mobile-btn btn-primary" id="saveRPPBtn" style="flex: 1;">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Absensi Modal -->
+    <div id="modalAbsensi" class="mobile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Input Absensi</div>
+                <button type="button" class="close-modal" onclick="closeModal('modalAbsensi')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="formAbsensi" onsubmit="event.preventDefault(); saveAbsensiForm();">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Tanggal *</label>
+                            <input type="date" id="absensiTanggal" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kelas *</label>
+                            <select id="absensiKelas" class="form-input" required onchange="loadSiswaForAbsensi()">
+                                <option value="">Pilih Kelas</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="siswaListContainer" class="hidden">
+                        <div class="form-group">
+                            <label class="form-label">Daftar Siswa</label>
+                            <div class="student-list" id="siswaList"></div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button type="button" class="mobile-btn btn-secondary" onclick="closeModal('modalAbsensi')" style="flex: 1;">Batal</button>
+                            <button type="submit" class="mobile-btn btn-primary" id="saveAbsensiBtn" style="flex: 1;">Simpan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Jurnal Modal -->
+    <div id="modalJurnal" class="mobile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Tambah Jurnal</div>
+                <button type="button" class="close-modal" onclick="closeModal('modalJurnal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="formJurnal" onsubmit="event.preventDefault(); saveJurnalForm();">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Tanggal *</label>
+                            <input type="date" id="jurnalTanggal" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mata Pelajaran *</label>
+                            <select id="jurnalMapel" class="form-input" required>
+                                <option value="">Pilih Mapel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kelas *</label>
+                            <select id="jurnalKelas" class="form-input" required>
+                                <option value="">Pilih Kelas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Semester *</label>
+                            <select id="jurnalSemester" class="form-input" required>
+                                <option value="">Pilih Semester</option>
+                                <option value="Ganjil">Ganjil</option>
+                                <option value="Genap">Genap</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tahun Ajaran *</label>
+                            <input type="text" id="jurnalTahun" class="form-input" required placeholder="2025/2026">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Materi yang Diajarkan</label>
+                        <textarea id="jurnalMateri" class="form-input" rows="3" style="resize: vertical;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Kegiatan Pembelajaran</label>
+                        <textarea id="jurnalKegiatan" class="form-input" rows="3" style="resize: vertical;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Catatan Khusus</label>
+                        <textarea id="jurnalCatatan" class="form-input" rows="3" style="resize: vertical;"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button type="button" class="mobile-btn btn-secondary" onclick="closeModal('modalJurnal')" style="flex: 1;">Batal</button>
+                        <button type="submit" class="mobile-btn btn-primary" id="saveJurnalBtn" style="flex: 1;">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Nilai Modal -->
+    <div id="modalNilai" class="mobile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Input Nilai</div>
+                <button type="button" class="close-modal" onclick="closeModal('modalNilai')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="formNilai" onsubmit="event.preventDefault(); saveNilaiForm();">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Mata Pelajaran *</label>
+                            <select id="nilaiMapel" class="form-input" required>
+                                <option value="">Pilih Mapel</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Kelas *</label>
+                            <select id="nilaiKelas" class="form-input" required onchange="loadSiswaForNilai()">
+                                <option value="">Pilih Kelas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Semester *</label>
+                            <select id="nilaiSemester" class="form-input" required>
+                                <option value="">Pilih Semester</option>
+                                <option value="Ganjil">Ganjil</option>
+                                <option value="Genap">Genap</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tahun Ajaran *</label>
+                            <input type="text" id="nilaiTahun" class="form-input" required placeholder="2025/2026">
+                        </div>
+                    </div>
+                    
+                    <div id="nilaiSiswaListContainer" class="hidden">
+                        <div class="form-group">
+                            <label class="form-label">Input Nilai Siswa</label>
+                            <div style="overflow-x: auto; margin-top: 10px;">
+                                <table style="width: 100%; min-width: 600px;">
+                                    <thead style="background: var(--light);">
+                                        <tr>
+                                            <th style="padding: 8px; font-size: 12px;">NIS</th>
+                                            <th style="padding: 8px; font-size: 12px;">Nama</th>
+                                            <th style="padding: 8px; font-size: 12px;">PH</th>
+                                            <th style="padding: 8px; font-size: 12px;">PTS</th>
+                                            <th style="padding: 8px; font-size: 12px;">PAS</th>
+                                            <th style="padding: 8px; font-size: 12px;">Sikap</th>
+                                            <th style="padding: 8px; font-size: 12px;">Ket.</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="nilaiInputBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button type="button" class="mobile-btn btn-secondary" onclick="closeModal('modalNilai')" style="flex: 1;">Batal</button>
+                            <button type="submit" class="mobile-btn btn-primary" id="saveNilaiBtn" style="flex: 1;">Simpan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript - ALL FUNCTIONS INCLUDED -->
+    <script>
+        let currentUser = null;
+        let filterOptions = {};
+        let editData = { 
+            silabus: null, 
+            rpp: null,
+            nilai: null
+        };
+        let siswaForAbsensi = [];
+        let siswaForNilai = [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSession();
+            setupTodayDate();
+        });
+        
+        function setupTodayDate() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInputs = ['absensiTanggal', 'jurnalTanggal'];
+            dateInputs.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.value = today;
+            });
+            
+            const year = new Date().getFullYear();
+            const tahunAjaran = `${year}/${year + 1}`;
+            document.getElementById('nilaiTahun').value = tahunAjaran;
+            document.getElementById('jurnalTahun').value = tahunAjaran;
+        }
+        
+        function checkSession() {
+            google.script.run.withSuccessHandler(function(session) {
+                if (session && session.loggedIn) {
+                    currentUser = session;
+                    showApp();
+                } else {
+                    showLogin();
+                }
+            }).withFailureHandler(function(error) {
+                console.error('Session check failed:', error);
+                showLogin();
+            }).getSessionGuru();
+        }
+        
+        function showLogin() {
+            document.getElementById('loginPage').classList.remove('hidden');
+            document.getElementById('appPage').classList.add('hidden');
+        }
+        
+        function showApp() {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('appPage').classList.remove('hidden');
+            
+            if (currentUser) {
+                document.getElementById('mobileUserName').textContent = currentUser.nama_guru || 'Guru';
+                document.getElementById('mobileUserId').textContent = `ID: ${currentUser.id_guru || '-'}`;
+                document.getElementById('welcomeMessage').textContent = `Selamat datang, ${currentUser.nama_guru || 'Guru'}!`;
+                
+                const firstLetter = currentUser.nama_guru ? currentUser.nama_guru.charAt(0).toUpperCase() : 'G';
+                document.getElementById('userAvatar').textContent = firstLetter;
+            }
+            
+            showPage('dashboard');
+        }
+        
+        function toggleUserMenu() {
+            document.getElementById('userDropdown').classList.toggle('active');
+        }
+        
+        document.addEventListener('click', function(event) {
+            const userMenu = document.querySelector('.user-menu');
+            if (userMenu && !userMenu.contains(event.target)) {
+                document.getElementById('userDropdown').classList.remove('active');
+            }
+        });
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const idGuru = document.getElementById('idGuru').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            const loginText = document.getElementById('loginText');
+            const loginLoading = document.getElementById('loginLoading');
+            const loginMessage = document.getElementById('loginMessage');
+            
+            if (!idGuru || !password) {
+                loginMessage.textContent = 'ID Guru dan Password harus diisi!';
+                loginMessage.classList.remove('hidden');
+                return;
+            }
+            
+            loginBtn.disabled = true;
+            loginText.classList.add('hidden');
+            loginLoading.classList.remove('hidden');
+            loginMessage.textContent = '';
+            loginMessage.classList.add('hidden');
+            
+            google.script.run.withSuccessHandler(function(result) {
+                loginBtn.disabled = false;
+                loginText.classList.remove('hidden');
+                loginLoading.classList.add('hidden');
+                
+                if (result.success) {
+                    currentUser = { 
+                        id_guru: idGuru, 
+                        nama_guru: result.nama || 'Guru'
+                    };
+                    showApp();
+                } else {
+                    loginMessage.textContent = result.message || 'Login gagal!';
+                    loginMessage.classList.remove('hidden');
+                }
+            }).withFailureHandler(function(error) {
+                console.error('Login error:', error);
+                loginBtn.disabled = false;
+                loginText.classList.remove('hidden');
+                loginLoading.classList.add('hidden');
+                loginMessage.textContent = 'Terjadi kesalahan saat login. Coba lagi.';
+                loginMessage.classList.remove('hidden');
+            }).login(idGuru, password);
+        });
+        
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin keluar dari aplikasi?')) {
+                google.script.run.withSuccessHandler(function() {
+                    currentUser = null;
+                    showLogin();
+                    document.getElementById('loginForm').reset();
+                }).logout();
+            }
+        }
+        
+        function showPage(pageName) {
+            const pages = ['dashboard', 'perencanaan', 'absensi', 'jurnal', 'penilaian'];
+            pages.forEach(page => {
+                const pageElement = document.getElementById(page + 'Page');
+                if (pageElement) {
+                    pageElement.classList.add('hidden');
+                }
+            });
+            
+            const pageElement = document.getElementById(pageName + 'Page');
+            if (pageElement) {
+                pageElement.classList.remove('hidden');
+                
+                if (pageName !== 'dashboard') {
+                    loadFilterOptions();
+                }
+                
+                switch(pageName) {
+                    case 'perencanaan':
+                        showTab('silabus');
+                        break;
+                    case 'penilaian':
+                        loadNilai();
+                        break;
+                }
+            }
+            
+            document.getElementById('userDropdown').classList.remove('active');
+        }
+        
+        function showTab(tabName) {
+            ['silabusTab', 'rppTab'].forEach(tab => {
+                const tabElement = document.getElementById(tab);
+                if (tabElement) {
+                    tabElement.classList.add('hidden');
+                }
+            });
+            
+            document.querySelectorAll('.mobile-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            const tabElement = document.getElementById(tabName + 'Tab');
+            if (tabElement) {
+                tabElement.classList.remove('hidden');
+            }
+            
+            document.querySelectorAll('.mobile-tab').forEach(btn => {
+                if ((tabName === 'silabus' && btn.textContent.includes('Silabus')) ||
+                    (tabName === 'rpp' && btn.textContent.includes('RPP'))) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            if (tabName === 'silabus') {
+                loadSilabus();
+            } else if (tabName === 'rpp') {
+                loadRpp();
+            }
+        }
+        
+        function loadFilterOptions() {
+            google.script.run.withSuccessHandler(function(options) {
+                filterOptions = options;
+                populateDropdowns(options);
+                populateModalDropdowns(options);
+            }).withFailureHandler(function(error) {
+                console.error('Failed to load filter options:', error);
+            }).getFilterOptions();
+        }
+        
+        function populateDropdowns(options) {
+            const dropdowns = [
+                { id: 'filterMapel', values: options?.mapel || [] },
+                { id: 'filterKelas', values: options?.kelas || [] },
+                { id: 'filterRppMapel', values: options?.mapel || [] },
+                { id: 'filterRppKelas', values: options?.kelas || [] },
+                { id: 'filterAbsensiKelas', values: options?.kelas || [] },
+                { id: 'filterJurnalMapel', values: options?.mapel || [] },
+                { id: 'filterJurnalKelas', values: options?.kelas || [] },
+                { id: 'filterNilaiMapel', values: options?.mapel || [] },
+                { id: 'filterNilaiKelas', values: options?.kelas || [] },
+                { id: 'filterNilaiSemester', values: options?.semester || [] },
+                { id: 'filterNilaiTahun', values: options?.tahun_ajaran || [] }
+            ];
+
+            dropdowns.forEach(dropdown => {
+                const select = document.getElementById(dropdown.id);
+                if (select) populateSelect(select, dropdown.values);
+            });
+        }
+        
+        function populateModalDropdowns(options) {
+            ['silabusMapel', 'rppMapel', 'jurnalMapel', 'nilaiMapel'].forEach(id => {
+                const select = document.getElementById(id);
+                if (select) populateSelect(select, options?.mapel || []);
+            });
+            
+            ['silabusKelas', 'rppKelas', 'absensiKelas', 'jurnalKelas', 'nilaiKelas'].forEach(id => {
+                const select = document.getElementById(id);
+                if (select) populateSelect(select, options?.kelas || []);
+            });
+            
+            const semesterOptions = ['Ganjil', 'Genap'];
+            ['rppSemester', 'jurnalSemester', 'nilaiSemester', 'filterRppSemester', 'filterJurnalSemester', 'filterNilaiSemester'].forEach(id => {
+                const select = document.getElementById(id);
+                if (select) {
+                    // Keep existing options if any
+                    if (select.options.length <= 1) {
+                        populateSelect(select, semesterOptions);
+                    }
+                }
+            });
+        }
+        
+        function populateSelect(select, values) {
+            if (!select) return;
+            
+            const currentValue = select.value;
+            
+            // Remove all options except the first one
+            while (select.options.length > 1) {
+                select.remove(1);
+            }
+            
+            // Add new options
+            if (values && values.length > 0) {
+                values.forEach(value => {
+                    if (value && !Array.from(select.options).some(opt => opt.value === value)) {
+                        const option = document.createElement('option');
+                        option.value = value;
+                        option.textContent = value;
+                        select.appendChild(option);
+                    }
+                });
+            }
+            
+            if (currentValue && Array.from(select.options).some(opt => opt.value === currentValue)) {
+                select.value = currentValue;
+            }
+        }
+        
+        // ==================== SILABUS FUNCTIONS ====================
+        function loadSilabus() {
+            const filter = {
+                mapel: document.getElementById('filterMapel')?.value || '',
+                kelas: document.getElementById('filterKelas')?.value || ''
+            };
+            
+            google.script.run.withSuccessHandler(function(data) {
+                const tbody = document.getElementById('silabusTableBody');
+                tbody.innerHTML = '';
+                
+                if (!data || data.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                <div class="empty-state-icon">📝</div>
+                                <p>Tidak ada data silabus</p>
+                                <button class="mobile-btn btn-primary mt-2" onclick="showModalSilabus()">
+                                    + Tambah Silabus
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                data.forEach(item => {
+                    const capaian = item.capaian_pembelajaran || '';
+                    const displayCapaian = capaian.length > 30 ? capaian.substring(0, 30) + '...' : capaian;
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><strong>${item.kode_silabus || '-'}</strong></td>
+                        <td>${item.mapel || '-'}</td>
+                        <td><span class="badge badge-info">${item.kelas || '-'}</span></td>
+                        <td title="${capaian}">${displayCapaian}</td>
+                        <td>${item.alokasi_jam || '-'}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button onclick="editSilabus('${item.kode_silabus}')" class="mobile-btn btn-warning btn-sm">Edit</button>
+                                <button onclick="deleteSilabus('${item.kode_silabus}')" class="mobile-btn btn-danger btn-sm">Hapus</button>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }).withFailureHandler(function(error) {
+                console.error('Failed to load silabus:', error);
+                const tbody = document.getElementById('silabusTableBody');
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 30px; color: #f44336;">
+                            Gagal memuat data silabus
+                        </td>
+                    </tr>
+                `;
+            }).getSilabus(filter);
+        }
+        
+        function showModalSilabus() {
+            document.getElementById('modalSilabusTitle').textContent = 'Tambah Silabus Baru';
+            document.getElementById('modalSilabus').classList.add('active');
+            editData.silabus = null;
+            document.getElementById('formSilabus').reset();
+        }
+        
+        function saveSilabusForm() {
+            const kode = document.getElementById('silabusKode').value;
+            const mapel = document.getElementById('silabusMapel').value;
+            const kelas = document.getElementById('silabusKelas').value;
+            
+            if (!kode || !mapel || !kelas) {
+                alert('Kode silabus, mata pelajaran, dan kelas wajib diisi!');
+                return;
+            }
+            
+            const data = {
+                kode_silabus: kode,
+                mapel: mapel,
+                kelas: kelas,
+                capaian_pembelajaran: document.getElementById('silabusCapaian').value,
+                tujuan: document.getElementById('silabusTujuan').value,
+                alokasi_jam: document.getElementById('silabusJam').value
+            };
+            
+            const isEdit = editData.silabus;
+            const kodeEdit = isEdit ? editData.silabus.kode : '';
+            const saveBtn = document.getElementById('saveSilabusBtn');
+            const originalText = saveBtn.innerHTML;
+            
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="loading"></span> Menyimpan...';
+            
+            google.script.run.withSuccessHandler(function(result) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                
+                alert(result.message);
+                if (result.success) {
+                    closeModal('modalSilabus');
+                    loadSilabus();
+                }
+            }).withFailureHandler(function(error) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                alert('Error: ' + error);
+            }).saveSilabus(data, isEdit, kodeEdit);
+        }
+        
+        function editSilabus(kode) {
+            google.script.run.withSuccessHandler(function(data) {
+                const silabus = data.find(item => item.kode_silabus === kode);
+                if (silabus) {
+                    editData.silabus = { kode: kode };
+                    
+                    document.getElementById('modalSilabusTitle').textContent = 'Edit Silabus';
+                    document.getElementById('silabusKode').value = silabus.kode_silabus || '';
+                    document.getElementById('silabusMapel').value = silabus.mapel || '';
+                    document.getElementById('silabusKelas').value = silabus.kelas || '';
+                    document.getElementById('silabusCapaian').value = silabus.capaian_pembelajaran || '';
+                    document.getElementById('silabusTujuan').value = silabus.tujuan || '';
+                    document.getElementById('silabusJam').value = silabus.alokasi_jam || '';
+                    
+                    showModalSilabus();
+                } else {
+                    alert('Silabus tidak ditemukan');
+                }
+            }).withFailureHandler(function(error) {
+                alert('Error: ' + error);
+            }).getSilabus({});
+        }
+        
+        function deleteSilabus(kode) {
+            if (confirm('Apakah Anda yakin ingin menghapus silabus ini?')) {
+                google.script.run.withSuccessHandler(function(result) {
+                    alert(result.message);
+                    if (result.success) {
+                        loadSilabus();
+                    }
+                }).withFailureHandler(function(error) {
+                    alert('Error: ' + error);
+                }).deleteSilabus(kode);
+            }
+        }
+        
+        // ==================== RPP FUNCTIONS ====================
+        function loadRpp() {
+            const filter = {
+                mapel: document.getElementById('filterRppMapel')?.value || '',
+                kelas: document.getElementById('filterRppKelas')?.value || '',
+                semester: document.getElementById('filterRppSemester')?.value || ''
+            };
+            
+            google.script.run.withSuccessHandler(function(data) {
+                const tbody = document.getElementById('rppTableBody');
+                tbody.innerHTML = '';
+                
+                if (!data || data.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="empty-state">
+                                <div class="empty-state-icon">📋</div>
+                                <p>Tidak ada data RPP</p>
+                                <button class="mobile-btn btn-primary mt-2" onclick="showModalRpp()">
+                                    + Tambah RPP
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                data.forEach(item => {
+                    const materi = item.materi || '';
+                    const displayMateri = materi.length > 30 ? materi.substring(0, 30) + '...' : materi;
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><strong>${item.kode_rpp || '-'}</strong></td>
+                        <td>${item.mapel || '-'}</td>
+                        <td><span class="badge badge-info">${item.kelas || '-'}</span></td>
+                        <td>${item.semester || '-'}</td>
+                        <td title="${materi}">${displayMateri}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button onclick="editRpp('${item.kode_rpp}')" class="mobile-btn btn-warning btn-sm">Edit</button>
+                                <button onclick="deleteRpp('${item.kode_rpp}')" class="mobile-btn btn-danger btn-sm">Hapus</button>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }).withFailureHandler(function(error) {
+                console.error('Failed to load RPP:', error);
+                const tbody = document.getElementById('rppTableBody');
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 30px; color: #f44336;">
+                            Gagal memuat data RPP
+                        </td>
+                    </tr>
+                `;
+            }).getRPP(filter);
+        }
+        
+        function showModalRpp() {
+            document.getElementById('modalRppTitle').textContent = 'Tambah RPP Baru';
+            document.getElementById('modalRPP').classList.add('active');
+            editData.rpp = null;
+            document.getElementById('formRPP').reset();
+        }
+        
+        function saveRppForm() {
+            const kode = document.getElementById('rppKode').value;
+            const mapel = document.getElementById('rppMapel').value;
+            const kelas = document.getElementById('rppKelas').value;
+            const semester = document.getElementById('rppSemester').value;
+            
+            if (!kode || !mapel || !kelas || !semester) {
+                alert('Kode RPP, mata pelajaran, kelas, dan semester wajib diisi!');
+                return;
+            }
+            
+            const data = {
+                kode_rpp: kode,
+                mapel: mapel,
+                kelas: kelas,
+                semester: semester,
+                materi: document.getElementById('rppMateri').value,
+                tujuan_pembelajaran: document.getElementById('rppTujuan').value,
+                langkah_pembelajaran: document.getElementById('rppLangkah').value
+            };
+            
+            const isEdit = editData.rpp;
+            const kodeEdit = isEdit ? editData.rpp.kode : '';
+            const saveBtn = document.getElementById('saveRPPBtn');
+            const originalText = saveBtn.innerHTML;
+            
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="loading"></span> Menyimpan...';
+            
+            google.script.run.withSuccessHandler(function(result) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                
+                alert(result.message);
+                if (result.success) {
+                    closeModal('modalRPP');
+                    loadRpp();
+                }
+            }).withFailureHandler(function(error) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                alert('Error: ' + error);
+            }).saveRPP(data, isEdit, kodeEdit);
+        }
+        
+        function editRpp(kode) {
+            google.script.run.withSuccessHandler(function(data) {
+                const rpp = data.find(item => item.kode_rpp === kode);
+                if (rpp) {
+                    editData.rpp = { kode: kode };
+                    
+                    document.getElementById('modalRppTitle').textContent = 'Edit RPP';
+                    document.getElementById('rppKode').value = rpp.kode_rpp || '';
+                    document.getElementById('rppMapel').value = rpp.mapel || '';
+                    document.getElementById('rppKelas').value = rpp.kelas || '';
+                    document.getElementById('rppSemester').value = rpp.semester || '';
+                    document.getElementById('rppMateri').value = rpp.materi || '';
+                    document.getElementById('rppTujuan').value = rpp.tujuan_pembelajaran || '';
+                    document.getElementById('rppLangkah').value = rpp.langkah_pembelajaran || '';
+                    
+                    showModalRpp();
+                } else {
+                    alert('RPP tidak ditemukan');
+                }
+            }).withFailureHandler(function(error) {
+                alert('Error: ' + error);
+            }).getRPP({});
+        }
+        
+        function deleteRpp(kode) {
+            if (confirm('Apakah Anda yakin ingin menghapus RPP ini?')) {
+                google.script.run.withSuccessHandler(function(result) {
+                    alert(result.message);
+                    if (result.success) {
+                        loadRpp();
+                    }
+                }).withFailureHandler(function(error) {
+                    alert('Error: ' + error);
+                }).deleteRPP(kode);
+            }
+        }
+        
+        // ==================== ABSENSI FUNCTIONS ====================
+        function showModalAbsensi() {
+            document.getElementById('modalAbsensi').classList.add('active');
+            document.getElementById('absensiTanggal').value = new Date().toISOString().split('T')[0];
+            document.getElementById('siswaListContainer').classList.add('hidden');
+        }
+        
+        function loadSiswaForAbsensi() {
+            const kelas = document.getElementById('absensiKelas').value;
+            if (!kelas) {
+                document.getElementById('siswaListContainer').classList.add('hidden');
+                return;
+            }
+            
+            google.script.run.withSuccessHandler(function(students) {
+                siswaForAbsensi = students;
+                const siswaList = document.getElementById('siswaList');
+                siswaList.innerHTML = '';
+                
+                if (!students || students.length === 0) {
+                    siswaList.innerHTML = '<div class="empty-state">Tidak ada siswa di kelas ini</div>';
+                } else {
+                    students.forEach(student => {
+                        const div = document.createElement('div');
+                        div.className = 'student-item';
+                        div.innerHTML = `
+                            <div class="student-info">
+                                <div class="student-name">${student.nama || '-'}</div>
+                                <div class="student-nis">NIS: ${student.nis || '-'}</div>
+                            </div>
+                            <select class="form-input" style="width: 100px; padding: 8px;" 
+                                    data-nis="${student.nis}" data-nama="${student.nama}">
+                                <option value="Hadir">Hadir</option>
+                                <option value="Izin">Izin</option>
+                                <option value="Sakit">Sakit</option>
+                                <option value="Alpha">Alpha</option>
+                            </select>
+                        `;
+                        siswaList.appendChild(div);
+                    });
+                }
+                
+                document.getElementById('siswaListContainer').classList.remove('hidden');
+            }).withFailureHandler(function(error) {
+                alert('Error: ' + error);
+            }).getSiswaByKelas(kelas);
+        }
+        
+        function saveAbsensiForm() {
+            const tanggal = document.getElementById('absensiTanggal').value;
+            const kelas = document.getElementById('absensiKelas').value;
+            
+            if (!tanggal || !kelas) {
+                alert('Tanggal dan kelas wajib diisi!');
+                return;
+            }
+            
+            const siswaElements = document.querySelectorAll('#siswaList .student-item select');
+            const dataAbsensi = [];
+            
+            siswaElements.forEach(select => {
+                const nis = select.getAttribute('data-nis');
+                const nama = select.getAttribute('data-nama');
+                const keterangan = select.value;
+                
+                if (nis && nama) {
+                    dataAbsensi.push({ nis, nama, keterangan });
+                }
+            });
+            
+            if (dataAbsensi.length === 0) {
+                alert('Tidak ada data siswa untuk disimpan!');
+                return;
+            }
+            
+            const saveBtn = document.getElementById('saveAbsensiBtn');
+            const originalText = saveBtn.innerHTML;
+            
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="loading"></span> Menyimpan...';
+            
+            google.script.run.withSuccessHandler(function(result) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                
+                alert(result.message);
+                if (result.success) {
+                    closeModal('modalAbsensi');
+                    document.getElementById('siswaListContainer').classList.add('hidden');
+                    document.getElementById('absensiKelas').value = '';
+                }
+            }).withFailureHandler(function(error) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                alert('Error: ' + error);
+            }).saveAbsensi(tanggal, kelas, dataAbsensi);
+        }
+        
+        // ==================== JURNAL FUNCTIONS ====================
+        function showModalJurnal() {
+            document.getElementById('modalJurnal').classList.add('active');
+            document.getElementById('jurnalTanggal').value = new Date().toISOString().split('T')[0];
+            const year = new Date().getFullYear();
+            document.getElementById('jurnalTahun').value = `${year}/${year + 1}`;
+        }
+        
+        function saveJurnalForm() {
+            const tanggal = document.getElementById('jurnalTanggal').value;
+            const mapel = document.getElementById('jurnalMapel').value;
+            const kelas = document.getElementById('jurnalKelas').value;
+            const semester = document.getElementById('jurnalSemester').value;
+            const tahun = document.getElementById('jurnalTahun').value;
+            
+            if (!tanggal || !mapel || !kelas || !semester || !tahun) {
+                alert('Tanggal, mapel, kelas, semester, dan tahun ajaran wajib diisi!');
+                return;
+            }
+            
+            const data = {
+                tanggal: tanggal,
+                mapel: mapel,
+                kelas: kelas,
+                semester: semester,
+                tahun_ajaran: tahun,
+                materi: document.getElementById('jurnalMateri').value,
+                kegiatan: document.getElementById('jurnalKegiatan').value,
+                catatan: document.getElementById('jurnalCatatan').value
+            };
+            
+            const saveBtn = document.getElementById('saveJurnalBtn');
+            const originalText = saveBtn.innerHTML;
+            
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="loading"></span> Menyimpan...';
+            
+            google.script.run.withSuccessHandler(function(result) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                
+                alert(result.message);
+                if (result.success) {
+                    closeModal('modalJurnal');
+                }
+            }).withFailureHandler(function(error) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                alert('Error: ' + error);
+            }).saveJurnal(data);
+        }
+        
+        // ==================== NILAI FUNCTIONS ====================
+        function loadNilai() {
+            const filter = {
+                mapel: document.getElementById('filterNilaiMapel')?.value || '',
+                kelas: document.getElementById('filterNilaiKelas')?.value || '',
+                semester: document.getElementById('filterNilaiSemester')?.value || '',
+                tahun_ajaran: document.getElementById('filterNilaiTahun')?.value || ''
+            };
+            
+            google.script.run.withSuccessHandler(function(data) {
+                const tbody = document.getElementById('nilaiTableBody');
+                tbody.innerHTML = '';
+                
+                if (!data || data.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="9" class="empty-state">
+                                <div class="empty-state-icon">📊</div>
+                                <p>Tidak ada data nilai</p>
+                                <button class="mobile-btn btn-primary mt-2" onclick="showModalNilai()">
+                                    + Input Nilai
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                data.forEach(item => {
+                    const nilaiAkhir = item.nilai_akhir || '0.00';
+                    let nilaiBadge = 'badge-info';
+                    const nilaiNum = parseFloat(nilaiAkhir);
+                    if (nilaiNum >= 85) nilaiBadge = 'badge-success';
+                    else if (nilaiNum >= 70) nilaiBadge = 'badge-info';
+                    else if (nilaiNum >= 55) nilaiBadge = 'badge-warning';
+                    else nilaiBadge = 'badge-danger';
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.nis || '-'}</td>
+                        <td>${item.nama || '-'}</td>
+                        <td>${item.ph || '0'}</td>
+                        <td>${item.pts || '0'}</td>
+                        <td>${item.pas || '0'}</td>
+                        <td>${item.sikap || '-'}</td>
+                        <td>${item.keterampilan || '-'}</td>
+                        <td><span class="badge ${nilaiBadge}">${nilaiAkhir}</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button onclick="editNilaiItem('${item.nis}', '${item.mapel}', '${item.kelas}', '${item.semester}', '${item.tahun_ajaran}')" 
+                                        class="mobile-btn btn-warning btn-sm">Edit</button>
+                            </div>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }).withFailureHandler(function(error) {
+                console.error('Failed to load nilai:', error);
+                const tbody = document.getElementById('nilaiTableBody');
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" style="text-align: center; padding: 30px; color: #f44336;">
+                            Gagal memuat data nilai
+                        </td>
+                    </tr>
+                `;
+            }).getNilai(filter);
+        }
+        
+        function showModalNilai() {
+            document.getElementById('modalNilai').classList.add('active');
+            document.getElementById('nilaiSiswaListContainer').classList.add('hidden');
+        }
+        
+        function loadSiswaForNilai() {
+            const kelas = document.getElementById('nilaiKelas').value;
+            if (!kelas) {
+                document.getElementById('nilaiSiswaListContainer').classList.add('hidden');
+                return;
+            }
+            
+            google.script.run.withSuccessHandler(function(students) {
+                siswaForNilai = students;
+                const tbody = document.getElementById('nilaiInputBody');
+                tbody.innerHTML = '';
+                
+                if (!students || students.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 20px; color: #666;">
+                                Tidak ada siswa di kelas ini
+                            </td>
+                        </tr>
+                    `;
+                } else {
+                    students.forEach(student => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td style="padding: 8px;">${student.nis || '-'}</td>
+                            <td style="padding: 8px;">${student.nama || '-'}</td>
+                            <td style="padding: 8px;"><input type="number" class="form-input" style="padding: 6px; width: 60px;" min="0" max="100" 
+                                       data-nis="${student.nis}" data-field="ph" placeholder="0-100"></td>
+                            <td style="padding: 8px;"><input type="number" class="form-input" style="padding: 6px; width: 60px;" min="0" max="100" 
+                                       data-nis="${student.nis}" data-field="pts" placeholder="0-100"></td>
+                            <td style="padding: 8px;"><input type="number" class="form-input" style="padding: 6px; width: 60px;" min="0" max="100" 
+                                       data-nis="${student.nis}" data-field="pas" placeholder="0-100"></td>
+                            <td style="padding: 8px;"><input type="text" class="form-input" style="padding: 6px; width: 60px;" 
+                                       data-nis="${student.nis}" data-field="sikap" placeholder="A/B/C"></td>
+                            <td style="padding: 8px;"><input type="text" class="form-input" style="padding: 6px; width: 80px;" 
+                                       data-nis="${student.nis}" data-field="keterampilan" placeholder="Baik/Cukup"></td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+                
+                document.getElementById('nilaiSiswaListContainer').classList.remove('hidden');
+            }).withFailureHandler(function(error) {
+                alert('Error: ' + error);
+            }).getSiswaForNilai(kelas);
+        }
+        
+        function saveNilaiForm() {
+            const mapel = document.getElementById('nilaiMapel').value;
+            const kelas = document.getElementById('nilaiKelas').value;
+            const semester = document.getElementById('nilaiSemester').value;
+            const tahun = document.getElementById('nilaiTahun').value;
+            
+            if (!mapel || !kelas || !semester || !tahun) {
+                alert('Semua field wajib diisi!');
+                return;
+            }
+            
+            const inputElements = document.querySelectorAll('#nilaiInputBody .form-input');
+            const dataNilai = [];
+            const studentMap = new Map();
+            
+            inputElements.forEach(input => {
+                const nis = input.getAttribute('data-nis');
+                const field = input.getAttribute('data-field');
+                const value = input.value.trim();
+                
+                if (!studentMap.has(nis)) {
+                    studentMap.set(nis, {
+                        nis: nis,
+                        nama: '',
+                        mapel: mapel,
+                        kelas: kelas,
+                        semester: semester,
+                        tahun_ajaran: tahun,
+                        ph: '',
+                        pts: '',
+                        pas: '',
+                        sikap: '',
+                        keterampilan: ''
+                    });
+                }
+                
+                const student = studentMap.get(nis);
+                if (field && value !== '') {
+                    student[field] = value;
+                }
+            });
+            
+            const rows = document.querySelectorAll('#nilaiInputBody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                if (cells.length >= 2) {
+                    const nis = cells[0].textContent.trim();
+                    const nama = cells[1].textContent.trim();
+                    if (studentMap.has(nis)) {
+                        studentMap.get(nis).nama = nama;
+                    }
+                }
+            });
+            
+            studentMap.forEach(student => {
+                if (student.nis && student.nama) {
+                    dataNilai.push(student);
+                }
+            });
+            
+            if (dataNilai.length === 0) {
+                alert('Tidak ada data nilai yang diisi!');
+                return;
+            }
+            
+            const saveBtn = document.getElementById('saveNilaiBtn');
+            const originalText = saveBtn.innerHTML;
+            
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="loading"></span> Menyimpan...';
+            
+            google.script.run.withSuccessHandler(function(result) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                
+                alert(result.message);
+                if (result.success) {
+                    closeModal('modalNilai');
+                    loadNilai();
+                }
+            }).withFailureHandler(function(error) {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalText;
+                alert('Error: ' + error);
+            }).saveNilai(dataNilai);
+        }
+        
+        function editNilaiItem(nis, mapel, kelas, semester, tahun) {
+            // Untuk edit nilai, kita bisa mengisi modal dengan data yang ada
+            // atau membuat sistem edit terpisah
+            alert(`Edit nilai untuk:\nNIS: ${nis}\nMapel: ${mapel}\nKelas: ${kelas}\nSemester: ${semester}\nTahun: ${tahun}\n\nFitur edit detail akan segera tersedia.`);
+            
+            // Bisa juga diarahkan ke modal dengan data yang sudah terisi
+            // showModalNilai();
+            // Isi form dengan data yang ada
+            // document.getElementById('nilaiMapel').value = mapel;
+            // document.getElementById('nilaiKelas').value = kelas;
+            // document.getElementById('nilaiSemester').value = semester;
+            // document.getElementById('nilaiTahun').value = tahun;
+            // loadSiswaForNilai(); // Untuk mengisi data siswa
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+    </script>
+</body>
+</html>
